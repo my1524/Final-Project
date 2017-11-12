@@ -15,7 +15,7 @@ void setup() {
 }
 
 void loop() {
-  ledsMeanVolume();
+  pixelLoop();
 //    checkedAudio = audioChecker();
 //  if (checkedAudio == true) {
 //    pixelLoop();
