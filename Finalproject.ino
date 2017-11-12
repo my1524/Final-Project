@@ -11,18 +11,20 @@ bool checkedAudio = false;
 
 void setup() {
   pixelSetup();
-
+  Serial.begin(9600);
 }
 
 void loop() {
-  pixelLoop();
-//    checkedAudio = audioChecker();
-//  if (checkedAudio == true) {
-//    pixelLoop();
-//  }
-//  else {
-//    whiteStrand();
-//  }
+  // pixelLoop();
+  ledsMeanVolume();
+  return;
+  checkedAudio = audioChecker();
+  if (checkedAudio == true) {
+    //   pixelLoop();
+  }
+  else {
+    // whiteStrand();
+  }
 }
 
 /*connect sine wave to program through crazy amount of resistors,
