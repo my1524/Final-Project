@@ -11,27 +11,28 @@ AudioConnection          patchCord1(adc1, fft256_1);
 // GUItool: end automatically generated code
 
 //5x5 array representing the 5 rows of 5 leds I'll use
-int npLights[5][5] = {
-  {,,,,},
-  {,,,,},
-  {,,,,},
-  {,,,,},
-  {,,,,}
-};
+//int npLights[5][5] = {
+//  {, , , ,},
+//  {, , , ,},
+//  {, , , ,},
+//  {, , , ,},
+//  {, , , ,}
+//};
 
 void setup() {
   // put your setup code here, to run once:
+  simpleSetup();
 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-
+  simpleLoop();
 }
 
-/*connect sine wave to program through crazy amount of resistors, 
- * print out just if it's loud 
+/*connect sine wave to program through crazy amount of resistors,
+   print out just if it's loud
 */
 //function to analyze audio with fft
-void analyzeAudio(){
+void analyzeAudio() {
 }
