@@ -32,19 +32,29 @@ void pixelSetup() {
   strip.show();
 }
 
-void ledsMeanVolume () {
+// this function makes the leds light up based on amplitude
+void liveGain () {
   if (fps > 24) {
     if (peak1.available()) {
       fps = 0;
-      int monoPeak = peak1.read() * 30.0;
+      int monoPeak = peak1.read() * 31.0;
       Serial.println(monoPeak);
       for (int cnt = 0; cnt < 30; cnt++) {
         //change this so that it can go higher than 30 but if it does the to led is red instead of green
-        if (cnt < monoPeak) {
-          //change this to a green color
-          strip.setPixelColor(cnt, 30, 195, 18, 0);
-          strip.show();
+        if (cnt < monoPeak - 1 ) {
+          if (cnt > 28 && monoPeak > 30) {
+            
+            strip.setPixelColor(28, 225, 100, 0, 0);
+            strip.setPixelColor(29, 225, 16, 16, 0);
+            strip.show();
+          }
+          else {
+            strip.setPixelColor(cnt, 30, 195, 18, 0);
+            strip.show();
+          }
+
         }
+
         //        delay(75);
         else
         {
@@ -52,7 +62,7 @@ void ledsMeanVolume () {
           strip.show();
         }
       }
-      //i = i - NUM_LEDS + 1;
+
     }
 
     delay(10);
