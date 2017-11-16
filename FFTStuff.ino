@@ -92,7 +92,7 @@ bool audioChecker() {
   else return false;
 
 }
-float binArray[30][8];
+float binArray[30][4];
 
 //function to analyze audio with fft
 void analyzeAudio() {
@@ -103,7 +103,7 @@ void analyzeAudio() {
     // each time new FFT data is available
     // print it all to the Arduino Serial Monitor
     for (int k = 0; k < 30; k++) {
-      for (int l = 0; l < 8; l++) {
+      for (int l = 0; l < 4; l++) {
         binArray[k][l] = myFFT.read(i);
         i++;
       }
@@ -113,14 +113,19 @@ void analyzeAudio() {
 
 
 void binAnalysis() {
-  for (int k = 0; k < 30; k++) {
-    for (int l = 0; l < 8; l++) {
-      binArray[k][l] = myFFT.read(i);
+for (int k = 0; k < 30; k++){
+    Serial.print("{");
+    for (int l = 0; l < 4; l++){
+      Serial.print(binArray[k][l]);
+      Serial.print(", ");
     }
     Serial.println("}");
   }
+  Serial.println(" ");
+  Serial.println(" ");
+  }
 
-}
+
 
 
 

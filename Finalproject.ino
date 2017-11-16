@@ -7,16 +7,20 @@ void setup() {
 }
 
 void loop() {
-  // pixelLoop();
-  liveGain();
-  return;
-  checkedAudio = audioChecker();
-  if (checkedAudio == true) {
-    //   pixelLoop();
-  }
-  else {
-    // whiteStrand();
-  }
+  analyzeAudio();
+  binAnalysis();
+  delay(1000);
+  
+//  // pixelLoop();
+//  liveGain();
+//  return;
+//  checkedAudio = audioChecker();
+//  if (checkedAudio == true) {
+//    //   pixelLoop();
+//  }
+//  else {
+//    // whiteStrand();
+//  }
 }
 
 /*connect sine wave to program through crazy amount of resistors,
