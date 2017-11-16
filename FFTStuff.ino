@@ -39,8 +39,10 @@ void ledsMeanVolume () {
       int monoPeak = peak1.read() * 30.0;
       Serial.println(monoPeak);
       for (int cnt = 0; cnt < 30; cnt++) {
+        //change this so that it can go higher than 30 but if it does the to led is red instead of green
         if (cnt < monoPeak) {
-          strip.setPixelColor(cnt, 240, 50, 240, 0);
+          //change this to a green color
+          strip.setPixelColor(cnt, 30, 195, 18, 0);
           strip.show();
         }
         //        delay(75);
