@@ -43,8 +43,17 @@ void liveGain () {
         //change this so that it can go higher than 30 but if it does the to led is red instead of green
         if (cnt < monoPeak - 1 ) {
           if (cnt > 28 && monoPeak > 30) {
-            
-            strip.setPixelColor(28, 225, 100, 0, 0);
+            //yellow
+            strip.setPixelColor(21, 225, 195, 0, 0);
+            strip.setPixelColor(22, 225, 195, 0, 0);
+            strip.setPixelColor(23, 225, 195, 0, 0);
+            //orange
+            strip.setPixelColor(24, 225, 100, 0, 0);
+            strip.setPixelColor(25, 225, 100, 0, 0);
+            strip.setPixelColor(26, 225, 100, 0, 0);
+            //red
+            strip.setPixelColor(27, 225, 16, 16, 0);
+            strip.setPixelColor(28, 225, 16, 16, 0);
             strip.setPixelColor(29, 225, 16, 16, 0);
             strip.show();
           }
