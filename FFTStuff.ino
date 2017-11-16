@@ -44,17 +44,17 @@ void liveGain () {
         if (cnt < monoPeak - 1 ) {
           if (cnt > 28 && monoPeak > 30) {
             //yellow
-            strip.setPixelColor(21, 225, 195, 0, 0);
-            strip.setPixelColor(22, 225, 195, 0, 0);
-            strip.setPixelColor(23, 225, 195, 0, 0);
+            strip.setPixelColor(21, 255, 195, 0, 0);
+            strip.setPixelColor(22, 255, 170, 0, 0);
+            strip.setPixelColor(23, 255, 146, 0, 0);
             //orange
-            strip.setPixelColor(24, 225, 100, 0, 0);
-            strip.setPixelColor(25, 225, 100, 0, 0);
-            strip.setPixelColor(26, 225, 100, 0, 0);
+            strip.setPixelColor(24, 255, 121, 0, 0);
+            strip.setPixelColor(25, 255, 97,  0, 0);
+            strip.setPixelColor(26, 255, 73,  0, 0);
             //red
-            strip.setPixelColor(27, 225, 16, 16, 0);
-            strip.setPixelColor(28, 225, 16, 16, 0);
-            strip.setPixelColor(29, 225, 16, 16, 0);
+            strip.setPixelColor(27, 255, 48,  0, 0);
+            strip.setPixelColor(28, 255, 24,  0, 0);
+            strip.setPixelColor(29, 255, 16,  0, 0);
             strip.show();
           }
           else {
