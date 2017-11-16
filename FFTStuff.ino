@@ -82,7 +82,7 @@ void liveGain () {
 
 bool audioChecker() {
   float val = peak1.read();
-  Serial.println(val);
+  // Serial.println(val);
   delay(10);
   if (val > 0)
   {
@@ -92,6 +92,7 @@ bool audioChecker() {
   else return false;
 
 }
+float binArray[30][8];
 
 //function to analyze audio with fft
 void analyzeAudio() {
@@ -101,16 +102,33 @@ void analyzeAudio() {
   if (myFFT.available()) {
     // each time new FFT data is available
     // print it all to the Arduino Serial Monitor
-    Serial.print("FFT: ");
-    for (i = 0; i < 40; i++) {
-      n = myFFT.read(i);
-      if (n >= 0.01) {
-        Serial.print(n);
-        Serial.print(" ");
-      } else {
-        Serial.print("  -  "); 
+    for (int k = 0; k < 30; k++) {
+      for (int l = 0; l < 8; l++) {
+        binArray[k][l] = myFFT.read(i);
+        i++;
       }
     }
-    Serial.println();
   }
 }
+
+
+void binAnalysis() {
+  for (int k = 0; k < 30; k++) {
+    for (int l = 0; l < 8; l++) {
+      binArray[k][l] = myFFT.read(i);
+    }
+    Serial.println("}");
+  }
+
+}
+
+
+
+//5x5 array representing the 5 rows of 5 leds I'll use
+//int npLights[5][5] = {
+//  {, , , ,},
+//  {, , , ,},
+//  {, , , ,},
+//  {, , , ,},
+//  {, , , ,}
+//};
