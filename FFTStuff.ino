@@ -4,12 +4,11 @@
 #include <SD.h>
 #include <SerialFlash.h>
 
-
-// GUItool: begin automatically generated code
 AudioInputAnalog         adc1;           //xy=164,95
 AudioAnalyzePeak         peak1;          //xy=317,123
 AudioConnection          patchCord1(adc1, peak1);
-// GUItool: end automatically generated code
+AudioAnalyzeFFT256       myFFT;       //xy=361,110
+AudioConnection          patchCord2(adc1, myFFT);
 
 #include <Adafruit_NeoPixel.h>
 #ifdef __AVR__
@@ -96,5 +95,22 @@ bool audioChecker() {
 
 //function to analyze audio with fft
 void analyzeAudio() {
+  float n;
+  int i;
 
+  if (myFFT.available()) {
+    // each time new FFT data is available
+    // print it all to the Arduino Serial Monitor
+    Serial.print("FFT: ");
+    for (i = 0; i < 40; i++) {
+      n = myFFT.read(i);
+      if (n >= 0.01) {
+        Serial.print(n);
+        Serial.print(" ");
+      } else {
+        Serial.print("  -  "); 
+      }
+    }
+    Serial.println();
+  }
 }
