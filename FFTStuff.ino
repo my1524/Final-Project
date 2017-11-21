@@ -9,6 +9,9 @@ AudioAnalyzePeak         peak1;          //xy=317,123
 AudioConnection          patchCord1(adc1, peak1);
 AudioAnalyzeFFT256       myFFT;       //xy=361,110
 AudioConnection          patchCord2(adc1, myFFT);
+//adding the following two lines of code makes liveGain() stop working
+AudioAnalyzeNoteFrequency notefreq;
+AudioConnection           patchCord3(adc1, notefreq);
 
 #include <Adafruit_NeoPixel.h>
 #ifdef __AVR__
@@ -24,11 +27,12 @@ AudioConnection          patchCord2(adc1, myFFT);
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRBW + NEO_KHZ800);
 
 elapsedMillis fps;
-void pixelSetup() {
-  AudioMemory(4);
+void audioSetup() {
+  AudioMemory(12);
   strip.setBrightness(BRIGHTNESS);
   strip.begin();
   strip.show();
+  //I think this is necessary for testing the frequency
 }
 
 // this function makes the leds light up based on amplitude
@@ -113,9 +117,9 @@ void analyzeAudio() {
 
 
 void binAnalysis() {
-for (int k = 0; k < 30; k++){
+  for (int k = 0; k < 30; k++) {
     Serial.print("{");
-    for (int l = 0; l < 4; l++){
+    for (int l = 0; l < 4; l++) {
       Serial.print(binArray[k][l]);
       Serial.print(", ");
     }
@@ -123,9 +127,15 @@ for (int k = 0; k < 30; k++){
   }
   Serial.println(" ");
   Serial.println(" ");
-  }
+}
 
-
+//void monophonicAnalysis() {
+//  if (notefreq.available()) {
+//    float note = notefreq.read();
+//    float prob = notefreq.probability();
+//    Serial.printf("Note: %3.2f | Probability: %.2f\n", note, prob);
+//  }
+//}
 
 
 

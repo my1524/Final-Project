@@ -2,7 +2,7 @@
 bool checkedAudio = false;
 
 void setup() {
-  pixelSetup();
+  audioSetup();
   Serial.begin(9600);
 }
 
@@ -15,6 +15,7 @@ void loop() {
   // pixelLoop();
   liveGain();
   return;
+  
   checkedAudio = audioChecker();
   if (checkedAudio == true) {
     //   pixelLoop();
