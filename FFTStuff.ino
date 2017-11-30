@@ -5,6 +5,7 @@
 #include <SerialFlash.h>
 
 AudioInputAnalog         adc1;           //xy=164,95
+AudioInputAnalog         adc2;
 AudioAnalyzePeak         peak1;          //xy=317,123
 AudioConnection          patchCord1(adc1, peak1);
 AudioAnalyzeFFT256       myFFT;       //xy=361,110
@@ -18,7 +19,7 @@ AudioConnection           patchCord3(adc1, notefreq);
 #include <avr/power.h>
 #endif
 
-#define PIN 6
+#define PIN 37
 
 #define NUM_LEDS 30
 
