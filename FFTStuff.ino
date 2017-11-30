@@ -4,15 +4,24 @@
 #include <SD.h>
 #include <SerialFlash.h>
 
-AudioInputAnalog         adc1;           //xy=164,95
-AudioInputAnalog         adc2;
-AudioAnalyzePeak         peak1;          //xy=317,123
-AudioConnection          patchCord1(adc1, peak1);
-AudioAnalyzeFFT256       myFFT;       //xy=361,110
-AudioConnection          patchCord2(adc1, myFFT);
-//adding the following two lines of code makes liveGain() stop working
-AudioAnalyzeNoteFrequency notefreq;
-AudioConnection           patchCord3(adc1, notefreq);
+#include <Audio.h>
+#include <Wire.h>
+#include <SPI.h>
+#include <SD.h>
+#include <SerialFlash.h>
+
+// GUItool: begin automatically generated code
+AudioInputAnalogStereo   adcs1;          //xy=139,191
+AudioAnalyzePeak         peak2;          //xy=284,289
+AudioAnalyzePeak         peak1;          //xy=307,241
+AudioAnalyzeFFT256       fft1;       //xy=373,164
+AudioAnalyzeFFT256       fft2;       //xy=407,206
+AudioConnection          patchCord1(adcs1, 0, peak1, 0);
+AudioConnection          patchCord2(adcs1, 0, fft1, 0);
+AudioConnection          patchCord3(adcs1, 1, peak2, 0);
+AudioConnection          patchCord4(adcs1, 1, fft2, 0);
+// GUItool: end automatically generated code
+
 
 #include <Adafruit_NeoPixel.h>
 #ifdef __AVR__
@@ -104,12 +113,12 @@ void analyzeAudio() {
   float n;
   int i;
 
-  if (myFFT.available()) {
+  if (fft1.available()) {
     // each time new FFT data is available
     // print it all to the Arduino Serial Monitor
     for (int k = 0; k < 30; k++) {
       for (int l = 0; l < 4; l++) {
-        binArray[k][l] = myFFT.read(i);
+        binArray[k][l] = fft1.read(i);
         i++;
       }
     }
