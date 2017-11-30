@@ -13,7 +13,7 @@ void loop() {
 //  delay(1000);
   
   // pixelLoop();
-  liveGain();
+  liveGainStereo();
   return;
   
   checkedAudio = audioChecker();
