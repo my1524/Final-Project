@@ -1,6 +1,7 @@
 
 bool checkedAudio = false;
 int monoStereoPin = 32;
+bool checkedSwitch;
 
 void setup() {
   audioSetup();
@@ -9,6 +10,8 @@ void setup() {
 }
 
 void loop() {
+  //this checks the position of the mono/stereo switch
+  checkedSwitch=checkSwitch();
   //this is fft testing bin stuff
   //  analyzeAudio();
   //  binAnalysis();
@@ -16,7 +19,7 @@ void loop() {
 
   // pixelLoop();
   //I need to create a check button thing for this 
-  if (digitalRead(monoStereoPin)==true ) {
+  if (checkedSwitch == HIGH ) {
     liveGainMono();
   }
   else {

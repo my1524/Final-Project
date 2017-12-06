@@ -36,6 +36,8 @@ AudioConnection          patchCord4(adcs1, 1, fft2, 0);
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRBW + NEO_KHZ800);
 
+bool mSSwitchState, mSSwitchStateLast; //monoStereoSwitch
+
 elapsedMillis fps;
 void audioSetup() {
   AudioMemory(12);
@@ -43,6 +45,18 @@ void audioSetup() {
   strip.begin();
   strip.show();
   //I think this is necessary for testing the frequency
+  mSSwitchState = digitalRead(monoStereoPin);
+}
+
+bool checkSwitch() {
+  mSSwitchStateLast = mSSwitchState;
+  mSSwitchState = digitalRead(monoStereoPin);
+  if (mSSwitchState == HIGH && mSSwitchStateLast == LOW) {
+    return HIGH;
+  }
+  else  {
+    return LOW;
+  }
 }
 
 // this function makes the leds light up based on amplitude
@@ -109,7 +123,7 @@ void liveGainStereo () {
         else
         {
           strip.setPixelColor(cnt, 0, 0, 0, 0);
-          strip.setPixelColor(29- cnt, 0, 0, 0, 0);
+          strip.setPixelColor(29 - cnt, 0, 0, 0, 0);
           strip.show();
         }
       }
@@ -219,6 +233,8 @@ void binAnalysis() {
   Serial.println(" ");
   Serial.println(" ");
 }
+
+
 
 //void monophonicAnalysis() {
 //  if (notefreq.available()) {
