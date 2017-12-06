@@ -11,7 +11,7 @@ void setup() {
 
 void loop() {
   //this checks the position of the mono/stereo switch
-  checkedSwitch=checkSwitch();
+ // checkedSwitch=checkSwitch();
   //this is fft testing bin stuff
   //  analyzeAudio();
   //  binAnalysis();
@@ -19,7 +19,7 @@ void loop() {
 
   // pixelLoop();
   //I need to create a check button thing for this 
-  if (checkedSwitch == HIGH ) {
+  if (checkSwitch()= ) {
     liveGainMono();
   }
   else {

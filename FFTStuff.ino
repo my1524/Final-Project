@@ -51,7 +51,7 @@ void audioSetup() {
 bool checkSwitch() {
   mSSwitchStateLast = mSSwitchState;
   mSSwitchState = digitalRead(monoStereoPin);
-  if (mSSwitchState == HIGH && mSSwitchStateLast == LOW) {
+  if (mSSwitchState == HIGH) {
     return HIGH;
   }
   else  {
