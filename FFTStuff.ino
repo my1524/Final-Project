@@ -50,80 +50,81 @@ void liveGainStereo () {
   if (fps > 24) {
     if (peak1.available() && peak2.available()) {
       fps = 0;
-      int stereoPeak1 = peak1.read() * 16.0;
-      int stereoPeak2 = peak2.read() * 16.0;
+      int leftPeak = peak1.read() * 16.0;
+      int rightPeak = peak2.read() * 16.0;
 
-      Serial.println(stereoPeak1);
-      Serial.println(stereoPeak2);
+      Serial.println(leftPeak);
+      Serial.println(rightPeak);
       Serial.println();
       for (int cnt = 0; cnt < 15; cnt++) {
-        if (cnt < stereoPeak1 - 1 || cnt < stereoPeak2 - 1) {
-          if ((cnt > 14 && stereoPeak1 > 15) || (cnt > 14 && stereoPeak2 > 15)) {
-            if (cnt > 14 && stereoPeak1 > 15) {
-              //yellow
-              strip.setPixelColor(6, 255, 195, 0, 0);
-              strip.setPixelColor(7, 255, 170, 0, 0);
-              strip.setPixelColor(8, 255, 146, 0, 0);
-              //orange
-              strip.setPixelColor(9, 255, 121, 0, 0);
-              strip.setPixelColor(10, 255, 97,  0, 0);
-              strip.setPixelColor(11, 255, 73,  0, 0);
-              //red
-              strip.setPixelColor(12, 255, 48,  0, 0);
-              strip.setPixelColor(13, 255, 24,  0, 0);
-              strip.setPixelColor(14, 255, 16,  0, 0);
-              strip.show();
-            }
-            else {
-              strip.setPixelColor(cnt, 30, 195, 18, 0);
-              strip.show();
-            }
-
-          }
-
-          //        delay(75);
-          if (cnt < stereoPeak2 - 1 ) {
-            if (cnt > 14 && stereoPeak2 > 15) {
-              //yellow
-              strip.setPixelColor(15, 255, 195, 0, 0);
-              strip.setPixelColor(16, 255, 170, 0, 0);
-              strip.setPixelColor(17, 255, 146, 0, 0);
-              //orange
-              strip.setPixelColor(18, 255, 121, 0, 0);
-              strip.setPixelColor(19, 255, 97,  0, 0);
-              strip.setPixelColor(20, 255, 73,  0, 0);
-              //red
-              strip.setPixelColor(21, 255, 48,  0, 0);
-              strip.setPixelColor(22, 255, 24,  0, 0);
-              strip.setPixelColor(23, 255, 16,  0, 0);
-              strip.show();
-            }
-            else {
-              strip.setPixelColor(29 - cnt, 30, 195, 18, 0);
-              strip.show();
-            }
-
-          }
-          else
-          {
-            strip.setPixelColor(cnt, 0, 0, 0, 0);
+        if (cnt < leftPeak - 1 || cnt < rightPeak - 1) {
+          //if ((cnt > 14 && leftPeak > 15) || (cnt > 14 && rightPeak > 15)) {
+          if (cnt > 13 && leftPeak > 15) {
+            //yellow
+            strip.setPixelColor(6, 255, 195, 0, 0);
+            strip.setPixelColor(7, 255, 170, 0, 0);
+            strip.setPixelColor(8, 255, 146, 0, 0);
+            //orange
+            strip.setPixelColor(9, 255, 121, 0, 0);
+            strip.setPixelColor(10, 255, 97,  0, 0);
+            strip.setPixelColor(11, 255, 73,  0, 0);
+            //red
+            strip.setPixelColor(12, 255, 48,  0, 0);
+            strip.setPixelColor(13, 255, 24,  0, 0);
+            strip.setPixelColor(14, 255, 16,  0, 0);
             strip.show();
           }
+          else {
+            strip.setPixelColor(cnt, 30, 195, 18, 0);
+            strip.show();
+          }
+          if (cnt > 13 && rightPeak > 15) {
+            //yellow
+            strip.setPixelColor(15, 255, 195, 0, 0);
+            strip.setPixelColor(16, 255, 170, 0, 0);
+            strip.setPixelColor(17, 255, 146, 0, 0);
+            //orange
+            strip.setPixelColor(18, 255, 121, 0, 0);
+            strip.setPixelColor(19, 255, 97,  0, 0);
+            strip.setPixelColor(20, 255, 73,  0, 0);
+            //red
+            strip.setPixelColor(21, 255, 48,  0, 0);
+            strip.setPixelColor(22, 255, 24,  0, 0);
+            strip.setPixelColor(23, 255, 16,  0, 0);
+            strip.show();
+          }
+          else {
+            strip.setPixelColor(29 - cnt, 30, 195, 18, 0);
+            strip.show();
+          }
+
+          //}
+
+
+          //        delay(75);
+
+
+
         }
         else
         {
           strip.setPixelColor(cnt, 0, 0, 0, 0);
+          strip.setPixelColor(29- cnt, 0, 0, 0, 0);
           strip.show();
         }
       }
-
+      //        else
+      //        {
+      //          strip.setPixelColor(cnt, 0, 0, 0, 0);
+      //          strip.show();
+      //        }
     }
 
-    delay(10);
-//    for (int c = 0; c < 30;c++){
-//      strip.setPixelColor(c, 0, 0, 0, 0);
-    }
   }
+
+  delay(10);
+  //    for (int c = 0; c < 30;c++){
+  //      strip.setPixelColor(c, 0, 0, 0, 0);
 }
 
 
