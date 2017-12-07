@@ -19,7 +19,7 @@ void loop() {
 
   // pixelLoop();
   //I need to create a check button thing for this 
-  if (checkSwitch() ) {
+  if (checkSwitch()= ) {
     liveGainMono();
   }
   else {

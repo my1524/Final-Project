@@ -70,9 +70,9 @@ void liveGainStereo () {
       Serial.println(leftPeak);
       Serial.println(rightPeak);
       Serial.println();
-      //left channel
       for (int cnt = 0; cnt < 15; cnt++) {
-        if (cnt < leftPeak - 1 ) {
+        if (cnt < leftPeak - 1 || cnt < rightPeak - 1) {
+          //if ((cnt > 14 && leftPeak > 15) || (cnt > 14 && rightPeak > 15)) {
           if (cnt > 13 && leftPeak > 15) {
             //yellow
             strip.setPixelColor(6, 255, 195, 0, 0);
@@ -92,15 +92,6 @@ void liveGainStereo () {
             strip.setPixelColor(cnt, 30, 195, 18, 0);
             strip.show();
           }
-        }
-        else
-        {
-          strip.setPixelColor(cnt, 0, 0, 0, 0);
-          strip.show();
-        }
-      }
-      for (int cnt = 0; cnt < 15; cnt ++) {
-        if (cnt < rightPeak - 1) {
           if (cnt > 13 && rightPeak > 15) {
             //yellow
             strip.setPixelColor(15, 255, 195, 0, 0);
@@ -117,34 +108,38 @@ void liveGainStereo () {
             strip.show();
           }
           else {
-            strip.setPixelColor(29-cnt, 30, 195, 18, 0);
+            strip.setPixelColor(29 - cnt, 30, 195, 18, 0);
             strip.show();
           }
+
+          //}
+
+
+          //        delay(75);
+
+
+
         }
         else
         {
-          strip.setPixelColor(29-cnt, 0, 0, 0, 0);
+          strip.setPixelColor(cnt, 0, 0, 0, 0);
+          strip.setPixelColor(29 - cnt, 0, 0, 0, 0);
           strip.show();
         }
-
-
-
       }
-
+      //        else
+      //        {
+      //          strip.setPixelColor(cnt, 0, 0, 0, 0);
+      //          strip.show();
+      //        }
     }
-    //        else
-    //        {
-    //          strip.setPixelColor(cnt, 0, 0, 0, 0);
-    //          strip.show();
-    //        }
-    delay (10);
+
   }
+
+  delay(10);
+  //    for (int c = 0; c < 30;c++){
+  //      strip.setPixelColor(c, 0, 0, 0, 0);
 }
-
-//delay(10);
-//    for (int c = 0; c < 30;c++){
-//      strip.setPixelColor(c, 0, 0, 0, 0);
-
 
 
 void liveGainMono () {
