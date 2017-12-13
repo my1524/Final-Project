@@ -44,10 +44,9 @@ void audioSetup() {
   strip.setBrightness(BRIGHTNESS);
   strip.begin();
   strip.show();
-  //I think this is necessary for testing the frequency
   mSSwitchState = digitalRead(monoStereoPin);
 }
-
+//this tests to see if the mono/stereo switch is on or off and returns if it has just been switched on
 bool checkSwitch() {
   mSSwitchStateLast = mSSwitchState;
   mSSwitchState = digitalRead(monoStereoPin);
@@ -59,7 +58,7 @@ bool checkSwitch() {
   }
 }
 
-// this function makes the leds light up based on amplitude
+// this function makes the leds light up based on amplitude in stereo
 void liveGainStereo () {
   if (fps > 24) {
     if (peak1.available() && peak2.available()) {
@@ -72,7 +71,7 @@ void liveGainStereo () {
       Serial.println();
       for (int cnt = 0; cnt < 15; cnt++) {
         if (cnt < leftPeak - 1 || cnt < rightPeak - 1) {
-          //if ((cnt > 14 && leftPeak > 15) || (cnt > 14 && rightPeak > 15)) {
+          //this loop sets the top several LEDs to gradate from yellow to red if the signal is peaking
           if (cnt > 13 && leftPeak > 15) {
             //yellow
             strip.setPixelColor(6, 255, 195, 0, 0);
@@ -112,10 +111,6 @@ void liveGainStereo () {
             strip.show();
           }
 
-          //}
-
-
-          //        delay(75);
 
 
 
@@ -127,21 +122,15 @@ void liveGainStereo () {
           strip.show();
         }
       }
-      //        else
-      //        {
-      //          strip.setPixelColor(cnt, 0, 0, 0, 0);
-      //          strip.show();
-      //        }
+
     }
 
   }
 
   delay(10);
-  //    for (int c = 0; c < 30;c++){
-  //      strip.setPixelColor(c, 0, 0, 0, 0);
 }
 
-
+//this does the same as above except with a mono signal, using all 30 LEDs 
 void liveGainMono () {
   if (fps > 24) {
     if (peak1.available()) {
@@ -149,7 +138,6 @@ void liveGainMono () {
       int monoPeak = peak1.read() * 31.0;
       Serial.println(monoPeak);
       for (int cnt = 0; cnt < 30; cnt++) {
-        //change this so that it can go higher than 30 but if it does the to led is red instead of green
         if (cnt < monoPeak - 1 ) {
           if (cnt > 28 && monoPeak > 30) {
             //yellow
@@ -172,21 +160,22 @@ void liveGainMono () {
           }
 
         }
-
-        //        delay(75);
         else
         {
           strip.setPixelColor(cnt, 0, 0, 0, 0);
           strip.show();
         }
       }
-
     }
 
     delay(10);
   }
 }
 
+
+
+
+//the following functions aren't being used
 //determine if audio is playing
 
 bool audioChecker() {
@@ -236,21 +225,4 @@ void binAnalysis() {
 
 
 
-//void monophonicAnalysis() {
-//  if (notefreq.available()) {
-//    float note = notefreq.read();
-//    float prob = notefreq.probability();
-//    Serial.printf("Note: %3.2f | Probability: %.2f\n", note, prob);
-//  }
-//}
 
-
-
-//5x5 array representing the 5 rows of 5 leds I'll use
-//int npLights[5][5] = {
-//  {, , , ,},
-//  {, , , ,},
-//  {, , , ,},
-//  {, , , ,},
-//  {, , , ,}
-//};
