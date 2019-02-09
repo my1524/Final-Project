@@ -12,13 +12,13 @@ void setup() {
 void loop() {
   //this checks the position of the mono/stereo switch
 
-  if (checkSwitch()= ) {
+  if (checkSwitch() ) {
     liveGainMono();
   }
   else {
     liveGainStereo();
   }
-
+  return;
 }
 
 

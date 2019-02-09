@@ -97,13 +97,13 @@ void liveGainStereo () {
             strip.setPixelColor(22, 255, 170, 0, 0);
             strip.setPixelColor(21, 255, 146, 0, 0);
             //orange
-            strip.setPixelColor(19, 255, 121, 0, 0);
-            strip.setPixelColor(18, 255, 97,  0, 0);
-            strip.setPixelColor(17, 255, 73,  0, 0);
+            strip.setPixelColor(20, 255, 121, 0, 0);
+            strip.setPixelColor(19, 255, 97,  0, 0);
+            strip.setPixelColor(18, 255, 73,  0, 0);
             //red
-            strip.setPixelColor(16, 255, 48,  0, 0);
-            strip.setPixelColor(15, 255, 24,  0, 0);
-            strip.setPixelColor(14, 255, 16,  0, 0);
+            strip.setPixelColor(17, 255, 48,  0, 0);
+            strip.setPixelColor(16, 255, 24,  0, 0);
+            strip.setPixelColor(15, 255, 16,  0, 0);
             strip.show();
           }
           else {
