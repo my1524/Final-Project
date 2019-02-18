@@ -1,4 +1,4 @@
-/*#include <Audio.h>
+#include <Audio.h>
 #include <Wire.h>
 #include <SPI.h>
 #include <SD.h>
@@ -223,6 +223,6 @@ void binAnalysis() {
   Serial.println(" ");
 }
 
-*/
+
 
 

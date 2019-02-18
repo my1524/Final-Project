@@ -1,10 +1,9 @@
-/*
 //#include <Adafruit_NeoPixel.h>
 //#ifdef __AVR__
 //#include <avr/power.h>
 //#endif
 //
-#define PIN 8
+//#define PIN 6
 //
 //#define NUM_LEDS 30
 //
@@ -19,7 +18,6 @@ int i = 0;
 //  strip.show();
 //}
 //
-
 void pixelLoop() {
 
   for (i; i < NUM_LEDS; i++) {
@@ -54,4 +52,4 @@ void whiteStrand(){
   strip.show();
   delay (1000);
 }
-*/
+
