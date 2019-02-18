@@ -44,9 +44,12 @@ bool checkSwitch() {
     return LOW;
   }
 }
+int h;
+
 
 // this function makes the leds light up based on amplitude in stereo
 void liveGainStereo () {
+  //this is so the ring is slower
   if (fps > 24) {
     if (peak1.available() && peak2.available()) {
       fps = 0;
@@ -73,10 +76,16 @@ void liveGainStereo () {
             strip.setPixelColor(13, 255, 24,  0, 0);
             strip.setPixelColor(14, 255, 16,  0, 0);
             strip.show();
+            if (h = 9999999999) {
+              h = 0;
+              randomCircle(cnt);
+            }
+            h++;
           }
           else {
             strip.setPixelColor(cnt, 30, 195, 18, 0);
             strip.show();
+            randomCircle(cnt);
           }
           if (cnt > 13 && rightPeak > 15) {
             //yellow
@@ -92,10 +101,20 @@ void liveGainStereo () {
             strip.setPixelColor(16, 255, 24,  0, 0);
             strip.setPixelColor(15, 255, 16,  0, 0);
             strip.show();
+            if (h = 9999999999) {
+              h = 0;
+              randomCircle(cnt);
+            }
+            h++;
           }
           else {
             strip.setPixelColor(29 - cnt, 30, 195, 18, 0);
             strip.show();
+            if (h = 9999999999) {
+              h = 0;
+              randomCircle(cnt);
+            }
+            h++;
           }
 
 
@@ -107,6 +126,11 @@ void liveGainStereo () {
           strip.setPixelColor(cnt, 0, 0, 0, 0);
           strip.setPixelColor(29 - cnt, 0, 0, 0, 0);
           strip.show();
+            if (h = 9999999999) {
+              h = 0;
+              randomCircle(cnt);
+            }
+            h++;
         }
       }
 
@@ -119,10 +143,12 @@ void liveGainStereo () {
 
 //this does the same as above except with a mono signal, using all 30 LEDs 
 void liveGainMono () {
+
   
-  for (int x = 0; x <NUM_LEDS_CIRCLE; x++){
+ /* for (int x = 0; x <NUM_LEDS_CIRCLE; x++){
       circle.setPixelColor(x, 0, 0, 0, 255);
   }
+  */
   circle.show();
  // delay (10);
   if (fps > 24) {
@@ -146,10 +172,20 @@ void liveGainMono () {
             strip.setPixelColor(28, 255, 24,  0, 0);
             strip.setPixelColor(29, 255, 16,  0, 0);
             strip.show();
+            if (h = 9999999999) {
+              h = 0;
+              randomCircle(cnt);
+            }
+            h++;
           }
           else {
             strip.setPixelColor(cnt, 30, 195, 18, 0);
             strip.show();
+            if (h = 9999999999) {
+              h = 0;
+              randomCircle(cnt);
+            }
+            h++;
           }
 
         }
@@ -157,6 +193,11 @@ void liveGainMono () {
         {
           strip.setPixelColor(cnt, 0, 0, 0, 0);
           strip.show();
+            if (h = 9999999999) {
+              h = 0;
+              randomCircle(cnt);
+            }
+            h++;
         }
       }
     }
@@ -202,11 +243,19 @@ void pixelLoop() {
 */
 void whiteStrand(){
   for (int x = 0; x <NUM_LEDS; x++){
-      circle.setPixelColor(x, x*15, x*10, (x+1)*5, 0);
+      circle.setPixelColor(x, 255, 5, 167, 0);
       circle.show();
       delay (100);
   }
   
   
+}
+
+void randomCircle(int n){
+  //most random
+    circle.setPixelColor(n, random(255), random(255), random(255), 0);
+    //pink random
+    //circle.setPixelColor(n, random(100, 255), random(150), random(75, 175), 0);
+    circle.show();
 }
 

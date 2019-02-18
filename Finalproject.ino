@@ -1,4 +1,6 @@
 
+
+
 bool checkedAudio = false;
 int monoStereoPin = 32;
 bool checkedSwitch;
@@ -10,7 +12,7 @@ void setup() {
 }
 
 void loop() {
-  whiteStrand();
+ // whiteStrand();
   //this checks the position of the mono/stereo switch
 
   if (checkSwitch() ) {
