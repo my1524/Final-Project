@@ -10,6 +10,7 @@ void setup() {
 }
 
 void loop() {
+  whiteStrand();
   //this checks the position of the mono/stereo switch
 
   if (checkSwitch() ) {

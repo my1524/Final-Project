@@ -1,28 +1,5 @@
-#include <Audio.h>
-#include <Wire.h>
-#include <SPI.h>
-#include <SD.h>
-#include <SerialFlash.h>
 
-#include <Audio.h>
-#include <Wire.h>
-#include <SPI.h>
-#include <SD.h>
-#include <SerialFlash.h>
 
-// GUItool: begin automatically generated code
-AudioInputAnalogStereo   adcs1;          //xy=139,191
-AudioAnalyzePeak         peak2;          //xy=284,289
-AudioAnalyzePeak         peak1;          //xy=307,241
-AudioAnalyzeFFT256       fft1;       //xy=373,164
-AudioAnalyzeFFT256       fft2;       //xy=407,206
-AudioConnection          patchCord1(adcs1, 0, peak1, 0);
-AudioConnection          patchCord2(adcs1, 0, fft1, 0);
-AudioConnection          patchCord3(adcs1, 1, peak2, 0);
-AudioConnection          patchCord4(adcs1, 1, fft2, 0);
-// GUItool: end automatically generated code
-
-/*
 #include <Adafruit_NeoPixel.h>
 #ifdef __AVR__
 #include <avr/power.h>
@@ -30,11 +7,18 @@ AudioConnection          patchCord4(adcs1, 1, fft2, 0);
 
 #define PIN 37
 
+#define CIRCLEPIN 8
+
 #define NUM_LEDS 30
+
+#define CIRCLEPIN 8
+
+#define NUM_LEDS_CIRCLE 12
 
 #define BRIGHTNESS 10
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRBW + NEO_KHZ800);
+Adafruit_NeoPixel circle = Adafruit_NeoPixel(NUM_LEDS_CIRCLE, CIRCLEPIN, NEO_GRBW + NEO_KHZ800);
 
 bool mSSwitchState, mSSwitchStateLast; //monoStereoSwitch
 
@@ -44,6 +28,9 @@ void audioSetup() {
   strip.setBrightness(BRIGHTNESS);
   strip.begin();
   strip.show();
+  circle.setBrightness(BRIGHTNESS);
+  circle.begin();
+  circle.show();
   mSSwitchState = digitalRead(monoStereoPin);
 }
 //this tests to see if the mono/stereo switch is on or off and returns if it has just been switched on
@@ -132,6 +119,12 @@ void liveGainStereo () {
 
 //this does the same as above except with a mono signal, using all 30 LEDs 
 void liveGainMono () {
+  
+  for (int x = 0; x <NUM_LEDS_CIRCLE; x++){
+      circle.setPixelColor(x, 0, 0, 0, 255);
+  }
+  circle.show();
+ // delay (10);
   if (fps > 24) {
     if (peak1.available()) {
       fps = 0;
@@ -170,59 +163,50 @@ void liveGainMono () {
 
     delay(10);
   }
-}
-
-
-
-
-//the following functions aren't being used
-//determine if audio is playing
-
-bool audioChecker() {
-  float val = peak1.read();
-  // Serial.println(val);
-  delay(10);
-  if (val > 0)
-  {
-
-    return true;
-  }
-  else return false;
 
 }
-float binArray[30][4];
 
-//function to analyze audio with fft
-void analyzeAudio() {
-  float n;
-  int i;
 
-  if (fft1.available()) {
-    // each time new FFT data is available
-    // print it all to the Arduino Serial Monitor
-    for (int k = 0; k < 30; k++) {
-      for (int l = 0; l < 4; l++) {
-        binArray[k][l] = fft1.read(i);
-        i++;
-      }
+
+
+
+
+
+/*
+void pixelLoop() {
+
+  for (i; i < NUM_LEDS; i++) {
+    if (i % 4 == 0){
+      circle.setPixelColor(i, 255, 128, 0, 0);
+      circle.show();
+      delay(75);
+    }
+    else if (i % 3 == 0) {
+      circle.setPixelColor(i, 240, 25, 120, 0);
+      circle.show();
+      delay(75);
+    }
+    else if (i % 2 ==0){
+      circle.setPixelColor(i, 153, 0, 153, 0);
+      circle.show();
+      delay(75);
+    }
+    else {
+      circle.setPixelColor(i, 0, 0, 255, 0);
+      circle.show();
+      delay(75);
     }
   }
+    i = i-NUM_LEDS+1;
 }
-
-
-void binAnalysis() {
-  for (int k = 0; k < 30; k++) {
-    Serial.print("{");
-    for (int l = 0; l < 4; l++) {
-      Serial.print(binArray[k][l]);
-      Serial.print(", ");
-    }
-    Serial.println("}");
-  }
-  Serial.println(" ");
-  Serial.println(" ");
-}
-
 */
-
+void whiteStrand(){
+  for (int x = 0; x <NUM_LEDS; x++){
+      circle.setPixelColor(x, x*15, x*10, (x+1)*5, 0);
+      circle.show();
+      delay (100);
+  }
+  
+  
+}
 
