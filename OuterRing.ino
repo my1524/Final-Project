@@ -49,7 +49,6 @@ int h;
 
 // this function makes the leds light up based on amplitude in stereo
 void liveGainStereo () {
-  //this is so the ring is slower
   if (fps > 24) {
     if (peak1.available() && peak2.available()) {
       fps = 0;
@@ -76,11 +75,8 @@ void liveGainStereo () {
             strip.setPixelColor(13, 255, 24,  0, 0);
             strip.setPixelColor(14, 255, 16,  0, 0);
             strip.show();
-            if (h = 9999999999) {
-              h = 0;
-              randomCircle(cnt);
-            }
-            h++;
+    //        whiteCircle(cnt);
+            whiteCircleR();
           }
           else {
             strip.setPixelColor(cnt, 30, 195, 18, 0);
@@ -101,20 +97,13 @@ void liveGainStereo () {
             strip.setPixelColor(16, 255, 24,  0, 0);
             strip.setPixelColor(15, 255, 16,  0, 0);
             strip.show();
-            if (h = 9999999999) {
-              h = 0;
-              randomCircle(cnt);
-            }
-            h++;
+       //     whiteCircle(cnt);
+            whiteCircleL();
           }
           else {
             strip.setPixelColor(29 - cnt, 30, 195, 18, 0);
             strip.show();
-            if (h = 9999999999) {
-              h = 0;
-              randomCircle(cnt);
-            }
-            h++;
+            randomCircle(cnt);
           }
 
 
@@ -126,11 +115,7 @@ void liveGainStereo () {
           strip.setPixelColor(cnt, 0, 0, 0, 0);
           strip.setPixelColor(29 - cnt, 0, 0, 0, 0);
           strip.show();
-            if (h = 9999999999) {
-              h = 0;
-              randomCircle(cnt);
-            }
-            h++;
+          randomCircle(cnt);
         }
       }
 
@@ -172,20 +157,13 @@ void liveGainMono () {
             strip.setPixelColor(28, 255, 24,  0, 0);
             strip.setPixelColor(29, 255, 16,  0, 0);
             strip.show();
-            if (h = 9999999999) {
-              h = 0;
-              randomCircle(cnt);
-            }
-            h++;
+      //      whiteCircle(cnt);
+            whiteCircle(cnt);
           }
           else {
             strip.setPixelColor(cnt, 30, 195, 18, 0);
             strip.show();
-            if (h = 9999999999) {
-              h = 0;
-              randomCircle(cnt);
-            }
-            h++;
+            randomCircle(cnt);
           }
 
         }
@@ -193,11 +171,7 @@ void liveGainMono () {
         {
           strip.setPixelColor(cnt, 0, 0, 0, 0);
           strip.show();
-            if (h = 9999999999) {
-              h = 0;
-              randomCircle(cnt);
-            }
-            h++;
+          randomCircle(cnt);
         }
       }
     }
@@ -252,10 +226,66 @@ void whiteStrand(){
 }
 
 void randomCircle(int n){
+  if (h = 9999999998^9999999999) {
+    h = 0;
+  
   //most random
     circle.setPixelColor(n, random(255), random(255), random(255), 0);
     //pink random
     //circle.setPixelColor(n, random(100, 255), random(150), random(75, 175), 0);
     circle.show();
+    }
+    h++;
 }
+void whiteCircle(int cnt){
+  circle.setPixelColor(cnt, 0, 0, 0, 255);
+  circle.show();
+  /*
+  for (int r = 0; NUM_LEDS_CIRCLE; r) {
+    circle.setPixelColor(r, 0, 0, 0, 255);
+    circle.show();
+  }
+  */
+
+}
+void whiteCircle2(){
+    circle.setPixelColor(0, 0, 0, 0, 255);
+    circle.setPixelColor(1, 0, 0, 0, 255);
+    circle.setPixelColor(2, 0, 0, 0, 255);
+    circle.setPixelColor(3, 0, 0, 0, 255);
+    circle.setPixelColor(4, 0, 0, 0, 255);
+    circle.setPixelColor(5, 0, 0, 0, 255);
+    circle.setPixelColor(6, 0, 0, 0, 255);
+    circle.setPixelColor(7, 0, 0, 0, 255);
+    circle.setPixelColor(8, 0, 0, 0, 255);
+    circle.setPixelColor(9, 0, 0, 0, 255);
+    circle.setPixelColor(10, 0, 0, 0, 255);
+    circle.setPixelColor(11, 0, 0, 0, 255);
+    circle.setPixelColor(12, 0, 0, 0, 255);
+    circle.show();
+
+}
+
+void whiteCircleL(){
+    circle.setPixelColor(6, 0, 0, 0, 255);
+    circle.setPixelColor(7, 0, 0, 0, 255);
+    circle.setPixelColor(8, 0, 0, 0, 255);
+    circle.setPixelColor(9, 0, 0, 0, 255);
+    circle.setPixelColor(10, 0, 0, 0, 255);
+    circle.setPixelColor(11, 0, 0, 0, 255);
+    circle.setPixelColor(12, 0, 0, 0, 255);
+    circle.show();
+
+}
+void whiteCircleR(){
+    circle.setPixelColor(0, 0, 0, 0, 255);
+    circle.setPixelColor(1, 0, 0, 0, 255);
+    circle.setPixelColor(2, 0, 0, 0, 255);
+    circle.setPixelColor(3, 0, 0, 0, 255);
+    circle.setPixelColor(4, 0, 0, 0, 255);
+    circle.setPixelColor(5, 0, 0, 0, 255);
+    circle.show();
+
+}
+
 
