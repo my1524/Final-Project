@@ -23,6 +23,7 @@ Adafruit_NeoPixel circle = Adafruit_NeoPixel(NUM_LEDS_CIRCLE, CIRCLEPIN, NEO_GRB
 bool mSSwitchState, mSSwitchStateLast; //monoStereoSwitch
 
 elapsedMillis fps;
+elapsedMillis circleSeconds;
 void audioSetup() {
   AudioMemory(12);
   strip.setBrightness(BRIGHTNESS);
@@ -158,7 +159,7 @@ void liveGainMono () {
             strip.setPixelColor(29, 255, 16,  0, 0);
             strip.show();
       //      whiteCircle(cnt);
-            whiteCircle(cnt);
+            whiteCircle2();
           }
           else {
             strip.setPixelColor(cnt, 30, 195, 18, 0);
@@ -226,16 +227,17 @@ void whiteStrand(){
 }
 
 void randomCircle(int n){
-  if (h = 9999999998^9999999999) {
-    h = 0;
-  
+//  if (h = ((9999999998^9999999999+9999999998^9999999999)*9999999998^9999999999)^19999999999999999) {
+//    h = 0;
+    if (circleSeconds > 250) {
+      circleSeconds = 0;
   //most random
-    circle.setPixelColor(n, random(255), random(255), random(255), 0);
+     circle.setPixelColor(n, random(255), random(255), random(255), 0);
     //pink random
     //circle.setPixelColor(n, random(100, 255), random(150), random(75, 175), 0);
-    circle.show();
+      circle.show();
     }
-    h++;
+//    h++;
 }
 void whiteCircle(int cnt){
   circle.setPixelColor(cnt, 0, 0, 0, 255);
