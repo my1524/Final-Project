@@ -46,7 +46,7 @@ bool checkSwitch() {
   }
 }
 int h;
-
+int l;
 
 // this function makes the leds light up based on amplitude in stereo
 void liveGainStereo () {
@@ -82,7 +82,7 @@ void liveGainStereo () {
           else {
             strip.setPixelColor(cnt, 30, 195, 18, 0);
             strip.show();
-            randomCircle(cnt);
+            randomCircle();
           }
           if (cnt > 13 && rightPeak > 15) {
             //yellow
@@ -104,7 +104,7 @@ void liveGainStereo () {
           else {
             strip.setPixelColor(29 - cnt, 30, 195, 18, 0);
             strip.show();
-            randomCircle(cnt);
+            randomCircle();
           }
 
 
@@ -116,7 +116,7 @@ void liveGainStereo () {
           strip.setPixelColor(cnt, 0, 0, 0, 0);
           strip.setPixelColor(29 - cnt, 0, 0, 0, 0);
           strip.show();
-          randomCircle(cnt);
+          randomCircle();
         }
       }
 
@@ -164,7 +164,7 @@ void liveGainMono () {
           else {
             strip.setPixelColor(cnt, 30, 195, 18, 0);
             strip.show();
-            randomCircle(cnt);
+            randomCircle();
           }
 
         }
@@ -172,7 +172,7 @@ void liveGainMono () {
         {
           strip.setPixelColor(cnt, 0, 0, 0, 0);
           strip.show();
-          randomCircle(cnt);
+          randomCircle();
         }
       }
     }
@@ -226,17 +226,28 @@ void whiteStrand(){
   
 }
 
-void randomCircle(int n){
-//  if (h = ((9999999998^9999999999+9999999998^9999999999)*9999999998^9999999999)^19999999999999999) {
-//    h = 0;
+void randomCircle(){
+
     if (circleSeconds > 250) {
-      circleSeconds = 0;
+      circleSeconds = 0;  
+ //     Serial.println(l+100);
+
+          
+      if (l > 11) {
+        l = 0;
+        offCircle();
+      }
+      
   //most random
-     circle.setPixelColor(n, random(255), random(255), random(255), 0);
+      circle.setPixelColor(l, random(255), random(255), random(255), 0);
     //pink random
     //circle.setPixelColor(n, random(100, 255), random(150), random(75, 175), 0);
       circle.show();
+      l++;
     }
+    else {
+    }
+//    Serial.println(l);
 //    h++;
 }
 void whiteCircle(int cnt){
@@ -290,4 +301,21 @@ void whiteCircleR(){
 
 }
 
+void offCircle(){
+  int v = 25;
+    circle.setPixelColor(0, 0, 0, 0, v);
+    circle.setPixelColor(1, 0, 0, 0, v);
+    circle.setPixelColor(2, 0, 0, 0, v);
+    circle.setPixelColor(3, 0, 0, 0, v);
+    circle.setPixelColor(4, 0, 0, 0, v);
+    circle.setPixelColor(5, 0, 0, 0, v);
+    circle.setPixelColor(6, 0, 0, 0, v);
+    circle.setPixelColor(7, 0, 0, 0, v);
+    circle.setPixelColor(8, 0, 0, 0, v);
+    circle.setPixelColor(9, 0, 0, 0, v);
+    circle.setPixelColor(10, 0, 0, 0, v);
+    circle.setPixelColor(11, 0, 0, 0, v);
+    circle.setPixelColor(12, 0, 0, 0, v);
+    circle.show();
+}
 
