@@ -12,25 +12,28 @@ void setup() {
 
 void loop() {
   
-  Serial.println(optionNumber);
+//  Serial.println(optionNumber);
  // whiteStrand();
- //this runs the pot test
-  optionNumber = potPosition();
+// this runs the pot test
+//  optionNumber = potPosition();
+// this is the button version of the pot selection
+//optionNumber = getButtonInfo(); //this is under Pot_functions tab
 //  potTest(); 
   Serial.println("got out of potPosition");
   //this checks the position of the mono/stereo switch
-  if (optionNumber == 11){
-    Serial.println("not running audio");
-  }
-  else{
-  
+  //if (optionNumber == 0){
       if (checkSwitch() ) {
       liveGainMono();
     }
     else {
       liveGainStereo();
     }
-  }
+    
+ // }
+//  else{
+//    Serial.print("option Number");
+//    Serial.println(optionNumber);
+//  }
   return;
 }
 

@@ -12,13 +12,37 @@ int outputValue = 0;        // value output to the PWM (analog out)
 void potSetup() {
     pinMode(potPin, INPUT);
 }
+int buttonPin1 = 1;
+int buttonPin2 = 2;
+boolean lastButtonState1 = LOW;
+boolean lastButtonState2 = LOW;
+boolean buttonState1 = LOW;
+boolean buttonState2 = LOW;
+boolean inSettingMode = false;
+
+
+int getButtonInfo() {
+  lastButtonState1 = buttonState1;
+  buttonState1 = digitalRead(buttonPin1);
+  lastButtonState2 = buttonState2;
+  buttonState2 = digitalRead(buttonPin2);
+  if (inSettingMode == true){
+    whiteMiddle();
+  }
+  if (buttonState1 == HIGH && lastButtonState1 == LOW) {
+    
+  }
+  
+  return outputValue;
+}
+
 
 int potPosition(){
   //it doesn't get past potValue the second time and not the first time if Serial.println("marker1 "); is commented out
   Serial.println("marker1 ");
-  //potValue = analogRead(potPin);
+  potValue = analogRead(A0);
   Serial.println("hello world ");
-  //outputValue = map(potValue, 0, 1023, 0, 11);
+  outputValue = map(potValue, 0, 1023, 0, 11);
   Serial.print("value is ");
   Serial.println(outputValue);
   return outputValue;

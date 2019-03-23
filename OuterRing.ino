@@ -11,19 +11,25 @@
 
 #define NUM_LEDS 30
 
-#define CIRCLEPIN 8
+#define MIDDLEPIN 0
 
 #define NUM_LEDS_CIRCLE 12
+
+#define NUM_LEDS_MIDDLE 7
 
 #define BRIGHTNESS 10
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRBW + NEO_KHZ800);
 Adafruit_NeoPixel circle = Adafruit_NeoPixel(NUM_LEDS_CIRCLE, CIRCLEPIN, NEO_GRBW + NEO_KHZ800);
+Adafruit_NeoPixel middle = Adafruit_NeoPixel(NUM_LEDS_MIDDLE, MIDDLEPIN, NEO_GRBW + NEO_KHZ800);
+
 
 bool mSSwitchState, mSSwitchStateLast; //monoStereoSwitch
 
 elapsedMillis fps;
 elapsedMillis circleSeconds;
+elapsedMillis middleSeconds;
+
 void audioSetup() {
   AudioMemory(12);
   strip.setBrightness(BRIGHTNESS);
@@ -32,6 +38,9 @@ void audioSetup() {
   circle.setBrightness(BRIGHTNESS);
   circle.begin();
   circle.show();
+  middle.setBrightness(BRIGHTNESS);
+  middle.begin();
+  middle.show();
   mSSwitchState = digitalRead(monoStereoPin);
 }
 //this tests to see if the mono/stereo switch is on or off and returns if it has just been switched on
@@ -47,6 +56,7 @@ bool checkSwitch() {
 }
 int h;
 int l;
+int m;
 
 // this function makes the leds light up based on amplitude in stereo
 void liveGainStereo () {
@@ -83,6 +93,7 @@ void liveGainStereo () {
             strip.setPixelColor(cnt, 30, 195, 18, 0);
             strip.show();
             randomCircle();
+            randomMiddle();
           }
           if (cnt > 13 && rightPeak > 15) {
             //yellow
@@ -105,6 +116,7 @@ void liveGainStereo () {
             strip.setPixelColor(29 - cnt, 30, 195, 18, 0);
             strip.show();
             randomCircle();
+            randomMiddle();
           }
 
 
@@ -117,6 +129,7 @@ void liveGainStereo () {
           strip.setPixelColor(29 - cnt, 0, 0, 0, 0);
           strip.show();
           randomCircle();
+          randomMiddle();
         }
       }
 
@@ -165,6 +178,7 @@ void liveGainMono () {
             strip.setPixelColor(cnt, 30, 195, 18, 0);
             strip.show();
             randomCircle();
+            randomMiddle();
           }
 
         }
@@ -173,6 +187,7 @@ void liveGainMono () {
           strip.setPixelColor(cnt, 0, 0, 0, 0);
           strip.show();
           randomCircle();
+          randomMiddle();
         }
       }
     }
@@ -244,15 +259,44 @@ void randomCircle(){
     //circle.setPixelColor(n, random(100, 255), random(150), random(75, 175), 0);
       circle.show();
       l++;
+
+      
     }
     else {
     }
 //    Serial.println(l);
 //    h++;
 }
+void randomMiddle(){
+//  Serial.println("we are in middle");
+    if (middleSeconds > 250) {
+      middleSeconds = 0;  
+ //     Serial.println(l+100);
+
+          
+      if (m > 6) {
+        m = 0;
+        offMiddle();
+      }
+      
+  //most random
+      middle.setPixelColor(m, random(255), random(255), random(255), 0);
+    //pink random
+    //circle.setPixelColor(n, random(100, 255), random(150), random(75, 175), 0);
+      middle.show();
+      m++;
+
+    }
+    else {
+    }
+//    Serial.println(l);
+//    h++;
+
+}
 void whiteCircle(int cnt){
   circle.setPixelColor(cnt, 0, 0, 0, 255);
   circle.show();
+  
   /*
   for (int r = 0; NUM_LEDS_CIRCLE; r) {
     circle.setPixelColor(r, 0, 0, 0, 255);
@@ -317,6 +361,29 @@ void offCircle(){
     circle.setPixelColor(11, 0, 0, 0, v);
     circle.setPixelColor(12, 0, 0, 0, v);
     circle.show();
+}
+void offMiddle(){
+  int v = 25;
+    middle.setPixelColor(0, 0, 0, 0, v);
+    middle.setPixelColor(1, 0, 0, 0, v);
+    middle.setPixelColor(2, 0, 0, 0, v);
+    middle.setPixelColor(3, 0, 0, 0, v);
+    middle.setPixelColor(4, 0, 0, 0, v);
+    middle.setPixelColor(5, 0, 0, 0, v);
+    middle.setPixelColor(6, 0, 0, 0, v);
+    
+}
+
+void whiteMiddle(){
+  int v = 255;
+    middle.setPixelColor(0, 0, 0, 0, v);
+    middle.setPixelColor(1, 0, 0, 0, v);
+    middle.setPixelColor(2, 0, 0, 0, v);
+    middle.setPixelColor(3, 0, 0, 0, v);
+    middle.setPixelColor(4, 0, 0, 0, v);
+    middle.setPixelColor(5, 0, 0, 0, v);
+    middle.setPixelColor(6, 0, 0, 0, v);
+    middle.show();
 }
 
 
