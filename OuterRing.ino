@@ -242,56 +242,66 @@ void whiteStrand(){
 }
 
 void randomCircle(){
-
-    if (circleSeconds > 250) {
-      circleSeconds = 0;  
- //     Serial.println(l+100);
-
-          
-      if (l > 11) {
-        l = 0;
-        offCircle();
+  if (inSettingMode == false){
+    int bright = peak1.read() * 150;
+  //  Serial.print("bright reading:");
+  //  Serial.println(bright);
+  
+      if (circleSeconds > 250) {
+        circleSeconds = 0;  
+   //     Serial.println(l+100);
+  
+            
+        if (l > 11) {
+          l = 0;
+          offCircle();
+        }
+        
+    //most random
+    circle.setPixelColor(l, 255, bright, 0, 0);
+        //circle.setPixelColor(l, random(255), random(255), random(255), bright);
+      //  circle.setPixelColor(l, random(55)+bright, random(55)+bright, random(55)+bright);
+      //pink random
+      //circle.setPixelColor(l, random(100, 255), random(150), random(75, 175), 0);
+      //circle.setPixelColor(l, random(100, 255)+bright, random(150)+bright, random(75, 175)+bright, 0);
+        circle.show();
+        l++;
+  
+        
       }
-      
-  //most random
-      circle.setPixelColor(l, random(255), random(255), random(255), 0);
-    //pink random
-    //circle.setPixelColor(n, random(100, 255), random(150), random(75, 175), 0);
-      circle.show();
-      l++;
-
-      
-    }
-    else {
-    }
-//    Serial.println(l);
-//    h++;
+      else {
+      }
+  //    Serial.println(l);
+  //    h++;
+  }
 }
 void randomMiddle(){
-//  Serial.println("we are in middle");
-    if (middleSeconds > 250) {
-      middleSeconds = 0;  
- //     Serial.println(l+100);
-
-          
-      if (m > 6) {
-        m = 0;
-        offMiddle();
+  if (inSettingMode == false){
+  //  Serial.println("we are in middle");
+      if (middleSeconds > 250) {
+        middleSeconds = 0;  
+   //     Serial.println(l+100);
+  
+            
+        if (m > 6) {
+          m = 0;
+          offMiddle();
+        }
+        
+    //most random
+        middle.setPixelColor(m, random(255), random(255), random(255), 0);
+      //pink random
+      //circle.setPixelColor(n, random(100, 255), random(150), random(75, 175), 0);
+        middle.show();
+        m++;
+  
       }
-      
-  //most random
-      middle.setPixelColor(m, random(255), random(255), random(255), 0);
-    //pink random
-    //circle.setPixelColor(n, random(100, 255), random(150), random(75, 175), 0);
-      middle.show();
-      m++;
-
-    }
-    else {
-    }
-//    Serial.println(l);
-//    h++;
-
+      else {
+      }
+  //    Serial.println(l);
+  //    h++;
+  
+  }
 }
 void whiteCircle(int cnt){
   circle.setPixelColor(cnt, 0, 0, 0, 255);
@@ -306,23 +316,26 @@ void whiteCircle(int cnt){
 
 }
 void whiteCircle2(){
-    circle.setPixelColor(0, 0, 0, 0, 255);
-    circle.setPixelColor(1, 0, 0, 0, 255);
-    circle.setPixelColor(2, 0, 0, 0, 255);
-    circle.setPixelColor(3, 0, 0, 0, 255);
-    circle.setPixelColor(4, 0, 0, 0, 255);
-    circle.setPixelColor(5, 0, 0, 0, 255);
-    circle.setPixelColor(6, 0, 0, 0, 255);
-    circle.setPixelColor(7, 0, 0, 0, 255);
-    circle.setPixelColor(8, 0, 0, 0, 255);
-    circle.setPixelColor(9, 0, 0, 0, 255);
-    circle.setPixelColor(10, 0, 0, 0, 255);
-    circle.setPixelColor(11, 0, 0, 0, 255);
-    circle.setPixelColor(12, 0, 0, 0, 255);
-    circle.show();
-
+    if (inSettingMode == true){
+  }
+      else{
+      circle.setPixelColor(0, 0, 0, 0, 255);
+      circle.setPixelColor(1, 0, 0, 0, 255);
+      circle.setPixelColor(2, 0, 0, 0, 255);
+      circle.setPixelColor(3, 0, 0, 0, 255);
+      circle.setPixelColor(4, 0, 0, 0, 255);
+      circle.setPixelColor(5, 0, 0, 0, 255);
+      circle.setPixelColor(6, 0, 0, 0, 255);
+      circle.setPixelColor(7, 0, 0, 0, 255);
+      circle.setPixelColor(8, 0, 0, 0, 255);
+      circle.setPixelColor(9, 0, 0, 0, 255);
+      circle.setPixelColor(10, 0, 0, 0, 255);
+      circle.setPixelColor(11, 0, 0, 0, 255);
+      circle.setPixelColor(12, 0, 0, 0, 255);
+      circle.show();
+  
+  }
 }
-
 void whiteCircleL(){
     circle.setPixelColor(6, 0, 0, 0, 255);
     circle.setPixelColor(7, 0, 0, 0, 255);
@@ -375,14 +388,29 @@ void offMiddle(){
 }
 
 void whiteMiddle(){
-  int v = 255;
-    middle.setPixelColor(0, 0, 0, 0, v);
-    middle.setPixelColor(1, 0, 0, 0, v);
-    middle.setPixelColor(2, 0, 0, 0, v);
-    middle.setPixelColor(3, 0, 0, 0, v);
-    middle.setPixelColor(4, 0, 0, 0, v);
-    middle.setPixelColor(5, 0, 0, 0, v);
-    middle.setPixelColor(6, 0, 0, 0, v);
+  if (inSettingMode == true){
+  }
+    else{
+    int v = 255;
+      middle.setPixelColor(0, 0, 0, 0, v);
+      middle.setPixelColor(1, 0, 0, 0, v);
+      middle.setPixelColor(2, 0, 0, 0, v);
+      middle.setPixelColor(3, 0, 0, 0, v);
+      middle.setPixelColor(4, 0, 0, 0, v);
+      middle.setPixelColor(5, 0, 0, 0, v);
+      middle.setPixelColor(6, 0, 0, 0, v);
+      middle.show();
+  }
+}
+void rainbowMiddle(){
+    int v = 0;
+    middle.setPixelColor(0, 255, 0, 0, v);
+    middle.setPixelColor(1, 255, 255, 0, v);
+    middle.setPixelColor(2, 0, 255, 0, v);
+    middle.setPixelColor(3, 0, 255, 255, v);
+    middle.setPixelColor(4, 0, 0, 255, v);
+    middle.setPixelColor(5, 175, 0, 255, v);
+    middle.setPixelColor(6, 255, 100, 0, v);
     middle.show();
 }
 
